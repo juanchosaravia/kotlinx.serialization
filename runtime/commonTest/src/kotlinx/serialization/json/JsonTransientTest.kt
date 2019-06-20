@@ -50,7 +50,7 @@ class JsonTransientTest : JsonTestBase() {
 
     @Test
     fun testThrowTransient() = parametrizedTest { useStreaming ->
-        assertFailsWith(JsonUnknownKeyException::class) {
+        assertFailsWith(JsonParsingException::class) {
             strict.parse(Data.serializer(), "{a:0,b:100500,c:Hello}", useStreaming)
         }
     }

@@ -93,7 +93,7 @@ internal class StreamingJsonInput internal constructor(
                     if (index != CompositeDecoder.UNKNOWN_NAME) {
                         return index
                     }
-                    if (configuration.strictMode) throw JsonUnknownKeyException(key)
+                    if (configuration.strictMode) reader.fail("Encountered an unknown key $key")
                     else reader.skipElement()
                 }
             }

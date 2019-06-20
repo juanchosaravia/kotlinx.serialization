@@ -124,7 +124,7 @@ private open class JsonTreeInput(json: Json, override val obj: JsonObject) : Abs
         }
 
         for (key in obj.keys) {
-            if (key !in names) throw JsonUnknownKeyException("Encountered an unknown key '$key'")
+            if (key !in names) throw JsonParsingException("Encountered an unknown key $key in $obj")
         }
     }
 }

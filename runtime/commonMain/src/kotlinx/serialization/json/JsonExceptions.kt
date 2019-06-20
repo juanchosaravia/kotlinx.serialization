@@ -12,28 +12,10 @@ import kotlinx.serialization.SerializationException
 public sealed class JsonException(message: String) : SerializationException(message)
 
 /**
- * Exception thrown when [Json] encounters `NaN` or infinite floating-point value in a strict mode.
- */
-public class JsonInvalidValueInStrictModeException(value: Any, valueDescription: String) : JsonException(
-    "$value is not a valid $valueDescription as per JSON spec.\n" +
-            "You can disable strict mode to serialize such values") {
-    constructor(floatValue: Float) : this(floatValue, "float")
-    constructor(doubleValue: Double) : this(doubleValue, "double")
-}
-
-/**
- * Exception thrown when [Json] encounters unknown key in a strict mode.
- */
-public class JsonUnknownKeyException(key: String) : JsonException(
-    "Strict JSON encountered unknown key: $key\n" +
-            "You can disable strict mode to skip unknown keys")
-
-
-/**
  * Exception thrown when [Json] has failed to parse provided JSON.
  * Such exception usually indicate that [Json] input is not a valid JSON.
  */
-public class JsonParsingException(position: Int, message: String) : JsonException("Invalid JSON at $position: $message")
+public class JsonParsingException(message: String) : JsonException("Invalid JSON: $message")
 
 /**
  * Exception thrown when requested [JsonElement] type differs from the actual one.
